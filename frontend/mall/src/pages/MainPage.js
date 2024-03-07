@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
+import BasicLayout from "../layout/BasicLayout";
 
 const MainPage = () => {
     return (
-        <div>
-            <div className="flex">
-                <Link to={'/about'}>About</Link>
-            </div>
+        <BasicLayout>
             <div className="text-3xl">MainPage</div>
-        </div>
+        </BasicLayout>            
     );
 }
 
