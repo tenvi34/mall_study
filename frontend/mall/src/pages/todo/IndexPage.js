@@ -4,7 +4,7 @@ import { useCallback } from "react";
 
 const IndexPage = () => {
 
-    const naviget = useNavigate();
+    const navigate = useNavigate();
 
     const handleClickList = useCallback(() => {
         navigate({ pathname: 'list' })

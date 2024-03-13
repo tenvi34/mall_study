@@ -8,7 +8,7 @@ const BasicLayout = ({children}) => {
                 Header
             </h1>
         </header> */}
-        <BasicMenu></BasicMenu>
+        <BasicMenu/>
 
         <div className="bg-white my-5 w-full flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
             
