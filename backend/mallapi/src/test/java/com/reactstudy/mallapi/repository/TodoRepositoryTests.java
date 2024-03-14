@@ -6,6 +6,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.reactstudy.mallapi.domain.Todo;
 
@@ -18,6 +22,7 @@ public class TodoRepositoryTests {
     @Autowired
     private TodoRepository todoRepository;
 
+    // 생성
     @Test
     public void testInsert() {
         log.info("=============테스트=============");
@@ -33,6 +38,7 @@ public class TodoRepositoryTests {
         }
     }
 
+    // 조회
     @Test
     public void testRead() {
         Long tno = 33L;
@@ -44,6 +50,7 @@ public class TodoRepositoryTests {
         log.info(todo);
     }
 
+    // 수정
     @Test
     public void testModify() {
         Long tno = 34L;
@@ -58,10 +65,23 @@ public class TodoRepositoryTests {
         todoRepository.save(todo);
     }
 
+    // 삭제
     @Test
     public void testDelete() {
         Long tno = 23L;
 
         todoRepository.deleteById(tno);
+    }
+
+    // 페이징
+    @Test
+    public void testPaging() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("tno").descending());
+
+        Page<Todo> result = todoRepository.findAll(pageable);
+
+        log.info(result.getTotalElements());
+
+        result.getContent().stream().forEach(todo -> log.info(todo));
     }
 }
