@@ -1,5 +1,7 @@
 package com.reactstudy.mallapi.service;
 
+import com.reactstudy.mallapi.dto.PageRequestDTO;
+import com.reactstudy.mallapi.dto.PageResponseDTO;
 import com.reactstudy.mallapi.dto.TodoDTO;
 
 public interface TodoService {
@@ -11,5 +13,7 @@ public interface TodoService {
     void modify(TodoDTO todoDTO);
 
     void remove(Long tno);
+
+    PageResponseDTO<TodoDTO> list(PageRequestDTO pageRequestDTO);
 
 }
