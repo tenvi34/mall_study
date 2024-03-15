@@ -1,5 +1,7 @@
 package com.reactstudy.mallapi.service;
 
+import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,5 +33,38 @@ public class TodoServiceImpl implements TodoService {
         Todo savedTodo = todoRepository.save(todo);
 
         return savedTodo.getTno();
+    }
+
+    @Override
+    public TodoDTO get(Long tno) {
+
+        Optional<Todo> result = todoRepository.findById(tno);
+
+        Todo todo = result.orElseThrow();
+
+        TodoDTO dto = modelMapper.map(todo, TodoDTO.class);
+
+        return dto;
+    }
+
+    @Override
+    public void modify(TodoDTO todoDTO) {
+
+        Optional<Todo> result = todoRepository.findById(todoDTO.getTno());
+
+        Todo todo = result.orElseThrow();
+
+        todo.changeTitle(todoDTO.getTitle());
+        todo.changeComplete(todoDTO.isComplete());
+        todo.changeDueDate(todoDTO.getDueDate());
+
+        todoRepository.save(todo);
+    }
+
+    @Override
+    public void remove(Long tno) {
+
+        todoRepository.deleteById(tno);
+
     }
 }
