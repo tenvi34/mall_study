@@ -19,7 +19,9 @@ const useCustomMove = () => {
 
     const queryDefault = createSearchParams({page, size}).toString()
 
+    // 목록으로 이동
     const moveToList = (pageParam) => {
+
         let queryStr = ""
         
         if(pageParam) {
@@ -35,7 +37,15 @@ const useCustomMove = () => {
         navigate({pathname: '../list', search:queryStr})
     }
 
-    return {moveToList, page, size}
+    // 수정
+    const moveToModify = (num) => {
+
+        console.log(queryDefault)
+
+        navigate({pathname: '../modify/${num}', search:queryDefault})
+    }
+
+    return {moveToList, moveToModify, page, size}
 }
 
 export default useCustomMove
