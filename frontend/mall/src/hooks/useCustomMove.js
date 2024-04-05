@@ -38,7 +38,7 @@ const useCustomMove = () => {
             queryStr = queryDefault
         }
 
-        //navigate({pathname: '../list', search:queryStr})
+        navigate({pathname: '../list', search:queryStr})
         serRefresh(!refresh)
     }
 

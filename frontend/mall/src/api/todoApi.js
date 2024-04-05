@@ -21,3 +21,11 @@ export const getList = async (pageParam) => {
 
     return res.data
 }
+
+// 글 추가
+export const postAdd = async (todoObj) => {
+
+    const res = await axios.post(`${prefix}/`, todoObj)
+
+    return res.data
+}
