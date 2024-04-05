@@ -10,12 +10,12 @@ const initState = {
     complete: false
 }
 
-const ReadComponent = ({tno}) => {
+const ReadComponent = ({ tno }) => {
 
     const [todo, setTodo] = useState(initState)
 
     // 이동 컴포넌트
-    const {moveToList, moveToModify} = useCustomMove()
+    const { moveToList, moveToModify } = useCustomMove()
 
     useEffect(() => {
         getOne(tno).then(data => {
@@ -34,14 +34,25 @@ const ReadComponent = ({tno}) => {
             {makeDiv('Complete', todo.complete ? 'Completed' : 'Not Yet')}
 
             <div className="flex justify-end p-4">
-                <button type="rounded p-4 m-2 text-xl w-32 text-white bg-blue-500" onClick={() => moveToList()}>List</button>
-                <button type="rounded p-4 m-2 text-xl w-32 text-white bg-red-500" onClick={() => moveToModify(tno)}>Modify</button>
+                <button type="button"
+                    className="rounded p-4 m-2 text-xl w-32 text-white bg-blue-500"
+                    onClick={() => moveToList()}
+                >
+                    List
+                </button>
+
+                <button type="button"
+                    className="rounded p-4 m-2 text-xl w-32 text-white bg-red-500"
+                    onClick={() => moveToModify(tno)}
+                >
+                    Modify
+                </button>
             </div>
         </div>
-    )   
+    )
 }
 
-const makeDiv = (title, value) => 
+const makeDiv = (title, value) =>
     <div className="flex justify-center">
         <div className="relative mb-4 flex w-full flex-wrap items-stretch">
             <div className="w-1/5 p-6 text-right font-bold">{title}</div>

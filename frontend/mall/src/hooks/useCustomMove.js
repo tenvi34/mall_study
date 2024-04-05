@@ -47,7 +47,7 @@ const useCustomMove = () => {
 
         console.log(queryDefault)
 
-        navigate({pathname: '../modify/${num}', search:queryDefault})
+        navigate({pathname: `../modify/${num}`, search:queryDefault})
     }
 
     // 조회
