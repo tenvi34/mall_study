@@ -3,7 +3,10 @@ package com.reactstudy.mallapi.controller;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.reactstudy.mallapi.dto.PageRequestDTO;
+import com.reactstudy.mallapi.dto.PageResponseDTO;
 import com.reactstudy.mallapi.dto.ProductDTO;
+import com.reactstudy.mallapi.service.ProductService;
 import com.reactstudy.mallapi.util.CustomFileUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class ProductController {
     
     private final CustomFileUtil fileUtil;
+    private final ProductService productService;
 
     // 상품 등록
     @PostMapping("/")
@@ -49,6 +53,15 @@ public class ProductController {
     @GetMapping("/view/{fileName}")
     public ResponseEntity<Resource> viewFileGet(@PathVariable String fileName) {
         return fileUtil.getFile(fileName);
+    }
+
+    // 목록
+    @GetMapping("/list")
+    public PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO) {
+
+        log.info("list...................");
+
+        return productService.getList(pageRequestDTO);
     }
     
 }
