@@ -1,11 +1,17 @@
 package com.reactstudy.mallapi.repository;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.reactstudy.mallapi.domain.Product;
@@ -64,5 +70,48 @@ public class ProductRepositoryTests {
 
         log.info(product);
         log.info(product.getImageList());
+    }
+
+    // 삭제 테스트
+    @Commit
+    @Transactional
+    @Test
+    public void testDelete() {
+
+        Long pno = 2L;
+
+        productRepository.updateToDelete(pno, true);
+    }
+
+    // 수정 테스트
+    @Test
+    public void testUpdate() {
+
+        Long pno = 10L;
+
+        Product product =productRepository.selectOne(pno).get();
+
+        product.changeName("10번 상품");
+        product.changeDesc("10번 상품 설명");
+        product.changePrice(10000);
+
+        // 첨부파일 수정
+        product.clearList();
+
+        product.addImageString(UUID.randomUUID().toString() + "_" + "NewIMAGE1.jpg");
+        product.addImageString(UUID.randomUUID().toString() + "_" + "NewIMAGE2.jpg");
+        product.addImageString(UUID.randomUUID().toString() + "_" + "NewIMAGE3.jpg");
+
+        productRepository.save(product);
+    }
+
+    // 리스트 테스트
+    @Test
+    public void testList() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("pno").descending());
+
+        Page<Object[]> result = productRepository.selectList(pageable);
+
+        result.getContent().forEach(arr -> log.info(Arrays.toString(arr)));
     }
 }
