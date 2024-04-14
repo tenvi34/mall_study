@@ -56,7 +56,9 @@ public class ProductController {
     // 파일 보여주기
     @GetMapping("/view/{fileName}")
     public ResponseEntity<Resource> viewFileGet(@PathVariable String fileName) {
+
         return fileUtil.getFile(fileName);
+
     }
 
     // 목록
@@ -66,6 +68,14 @@ public class ProductController {
         log.info("list...................");
 
         return productService.getList(pageRequestDTO);
-    }   
+    }
+
+    // 조회
+    @GetMapping("/{pno}")
+    public ProductDTO read(@PathVariable(name = "pno") Long pno) {
+
+        return productService.get(pno);
+        
+    }
     
 }

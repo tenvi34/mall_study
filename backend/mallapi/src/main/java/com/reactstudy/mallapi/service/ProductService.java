@@ -11,5 +11,8 @@ public interface ProductService {
 
     // 서비스 등록
     Long register(ProductDTO productDTO);
+
+    // 서비스 조회
+    ProductDTO get(Long pno);
     
 }
