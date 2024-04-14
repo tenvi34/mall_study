@@ -6,6 +6,10 @@ import com.reactstudy.mallapi.dto.ProductDTO;
 
 public interface ProductService {
     
+    // 서비스 목록
     PageResponseDTO<ProductDTO> getList(PageRequestDTO pageRequestDTO);
+
+    // 서비스 등록
+    Long register(ProductDTO productDTO);
     
 }
