@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
+
 @RestController
 @RequiredArgsConstructor
 @Log4j2
@@ -34,7 +35,7 @@ public class ProductController {
 
     // 상품 등록
     @PostMapping("/")
-    public Map<String, String> register(ProductDTO productDTO) {
+    public Map<String, Long> register(ProductDTO productDTO) {
         
         log.info("register: " + productDTO);
 
@@ -45,8 +46,11 @@ public class ProductController {
         productDTO.setUploadFileNames(uploadFileNames);
         
         log.info(uploadFileNames);
+
+        // 서비스 호출
+        Long pno = productService.register(productDTO);
         
-        return Map.of("RESULT", "SUCCESS");
+        return Map.of("RESULT", pno);
     }
     
     // 파일 보여주기
@@ -62,6 +66,6 @@ public class ProductController {
         log.info("list...................");
 
         return productService.getList(pageRequestDTO);
-    }
+    }   
     
 }
