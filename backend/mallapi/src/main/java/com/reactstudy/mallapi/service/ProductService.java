@@ -14,5 +14,8 @@ public interface ProductService {
 
     // 서비스 조회
     ProductDTO get(Long pno);
+
+    // 서비스 수정
+    void modify(ProductDTO productDTO);
     
 }
