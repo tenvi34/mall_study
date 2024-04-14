@@ -166,4 +166,12 @@ public class ProductServiceImpl implements ProductService {
 
         productRepository.save(product);
     }
+
+    // 삭제
+    @Override
+    public void remove(Long pno) {
+        
+        productRepository.updateToDelete(pno, true);
+        
+    }
 }

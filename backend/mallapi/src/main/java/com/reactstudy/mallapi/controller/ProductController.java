@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -115,6 +116,19 @@ public class ProductController {
             // 파일 삭제
             fileUtil.deleteFiles(removeFiles);
         }
+
+        return Map.of("RESULT", "SUCCESS");
+    }
+
+    // 삭제
+    @DeleteMapping("/{pno}")
+    public Map<String, String> remove(@PathVariable(name = "pno") Long pno) {
+
+        List<String> oldFileNames = productService.get(pno).getUploadFileNames();
+
+        productService.remove(pno);
+
+        fileUtil.deleteFiles(oldFileNames);
 
         return Map.of("RESULT", "SUCCESS");
     }

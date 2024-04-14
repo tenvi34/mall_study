@@ -17,5 +17,8 @@ public interface ProductService {
 
     // 서비스 수정
     void modify(ProductDTO productDTO);
+
+    //서비스 삭제
+    void remove(Long pno);
     
 }
