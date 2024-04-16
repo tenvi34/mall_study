@@ -5,19 +5,23 @@ const BasicMenu = () => {
         <nav id='navbar' className="flex bg-blue-300">
 
             <div className="w-4/5 bg-gray-500">
-                <ul className="flex p-4 text-white font-bold"> 
-                {/* 메인페이지 */}
-                <li className="pr-6 text-2xl">
-                    <Link to={'/'}>Main</Link>
-                </li>
-                {/* About 페이지 */}
-                <li className="pr-6 text-2xl">
-                    <Link to={'/about'}>About</Link>
-                </li>
-                {/* Todo 페이지 */}
-                <li className="pr-6 text-2xl">
-                    <Link to={'/todo'}>Todo</Link>
-                </li>
+                <ul className="flex p-4 text-white font-bold">
+                    {/* 메인페이지 */}
+                    <li className="pr-6 text-2xl">
+                        <Link to={'/'}>Main</Link>
+                    </li>
+                    {/* About 페이지 */}
+                    <li className="pr-6 text-2xl">
+                        <Link to={'/about'}>About</Link>
+                    </li>
+                    {/* Todo 페이지 */}
+                    <li className="pr-6 text-2xl">
+                        <Link to={'/todo'}>Todo</Link>
+                    </li>
+                    {/* Products 페이지 */}
+                    <li className="pr-6 text-2xl">
+                        <Link to={'/products'}>Products</Link>
+                    </li>
                 </ul>
             </div>
 
