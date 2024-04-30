@@ -13,6 +13,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.reactstudy.mallapi.security.handler.APILoginFailHandler;
+import com.reactstudy.mallapi.security.handler.APILoginSuccessHandler;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -37,6 +40,8 @@ public class CustomSecurityConfig {
         // API 서버로 로그인
         http.formLogin(config -> {
             config.loginPage("/api/member/login");
+            config.successHandler(new APILoginSuccessHandler());
+            config.failureHandler(new APILoginFailHandler());
         });
 
         return http.build();
