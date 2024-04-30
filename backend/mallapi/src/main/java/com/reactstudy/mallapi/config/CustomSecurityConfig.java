@@ -24,7 +24,7 @@ public class CustomSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        log.info("================Security Config================");
+        log.info("=====================Security Config=====================");
 
         http.cors(httpSecurityCorsConfigurer -> {
             httpSecurityCorsConfigurer.configurationSource(corsConfigurationSource());
@@ -33,6 +33,11 @@ public class CustomSecurityConfig {
         http.sessionManagement(sessionConfig -> sessionConfig.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.csrf(config -> config.disable());
+
+        // API 서버로 로그인
+        http.formLogin(config -> {
+            config.loginPage("/api/member/login");
+        });
 
         return http.build();
     }
