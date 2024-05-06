@@ -9,4 +9,7 @@ Spring + React 공부용 프로젝트
 useCustomMove에서 '' 를 ``로 변경 -> 이유: 오타
 
 2024.04.20
-Security 시작
+Security 시작 ~ 2024.05.06
+
+2024.05.07 
+Redux(리덕스) 시작
