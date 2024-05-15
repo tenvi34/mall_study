@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const BasicMenu = () => {
+
+    const loginState = useSelector(state => state.loginSlice)
+
     return (
         <nav id='navbar' className="flex bg-blue-300">
 
@@ -14,22 +18,33 @@ const BasicMenu = () => {
                     <li className="pr-6 text-2xl">
                         <Link to={'/about'}>About</Link>
                     </li>
-                    {/* Todo 페이지 */}
-                    <li className="pr-6 text-2xl">
-                        <Link to={'/todo'}>Todo</Link>
-                    </li>
-                    {/* Products 페이지 */}
-                    <li className="pr-6 text-2xl">
-                        <Link to={'/products'}>Products</Link>
-                    </li>
+
+                    {loginState.email ? // 로그인한 사용자만 출력
+                        <>
+                            {/* Todo 페이지 */}
+                            <li className="pr-6 text-2xl">
+                                <Link to={'/todo'}>Todo</Link>
+                            </li>
+                            {/* Products 페이지 */}
+                            <li className="pr-6 text-2xl">
+                                <Link to={'/products'}>Products</Link>
+                            </li>
+                        </>
+                        :
+                        <></>
+                    }
                 </ul>
             </div>
 
             <div className="w-1/5 flex justify-end bg-orange-300 p-4 font-medium">
-                <div className="text-white text-sm m-1 rounded">
-                    Login
-                    {/* <Link to={'/login'}>Login</Link> */}
-                </div>
+                {!loginState.email ?
+                    <div className="text-white text-sm m-1 rounded">
+                        <Link to={'/member/login'}>Login</Link>
+                    </div>
+                    :
+                    <></>
+                }
+
             </div>
         </nav>
     );
